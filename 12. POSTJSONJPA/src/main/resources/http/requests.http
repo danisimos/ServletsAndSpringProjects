@@ -1,0 +1,20 @@
+GET http://localhost:8080/pets
+
+###
+
+POST http://localhost:8080/pets
+Content-Type: application/json
+
+{
+    "kind": "dog",
+    "name": "pol"
+}
+
+###
+###
+
+GET http://localhost:8080/users
+
+###
+
+GET http://localhost:8080/search/users/byEmail?email=dan
