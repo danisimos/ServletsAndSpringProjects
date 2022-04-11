@@ -1,0 +1,65 @@
+GET http://localhost:8080/authors?page=3
+
+###
+
+POST http://localhost:8080/authors
+Content-Type: application/json
+
+{
+    "firstName": "Daniil",
+    "lastName": "Korotaev"
+}
+
+###
+
+PUT http://localhost:8080/authors/21
+Content-Type: application/json
+
+{
+  "firstName": "fn",
+  "lastName": "ln"
+}
+
+###
+
+DELETE http://localhost:8080/authors/21
+
+###
+
+GET http://localhost:8080/authors/1/posts?page=0&sort=id
+
+###
+
+POST http://localhost:8080/authors/2/posts
+Content-Type: application/json
+
+{
+    "title": "art",
+    "text": "arting is cool"
+}
+
+###
+
+PUT http://localhost:8080/authors/14/posts/3
+Content-Type: application/json
+
+{
+  "title": "reading",
+  "text": "reading is cool"
+}
+
+###
+
+DELETE http://localhost:8080/authors/2/posts/4
+
+###
+
+GET http://localhost:8080/authors/1/posts/favorites?page=0
+
+###
+
+POST localhost:8080/authors/1/posts/addToFavorite?postId=2
+
+###
+
+POST http://localhost:8080/authors/1/posts/deleteFromFavorite?postId=1

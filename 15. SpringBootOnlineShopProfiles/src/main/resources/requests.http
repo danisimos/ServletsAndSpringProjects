@@ -1,0 +1,47 @@
+POST http://localhost:8080/categories
+Content-Type: application/json
+
+{
+  "title": "art",
+  "description": "arting"
+}
+
+
+###
+
+GET http://localhost:8080/categories
+
+###
+
+GET http://localhost:8080/categories/1/products
+
+###
+
+POST http://localhost:8080/categories/1/products
+Content-Type: application/json
+
+{
+  "title": "socks"
+}
+
+###
+
+GET http://localhost:8080/profiles
+
+###
+
+GET http://localhost:8080/profiles/1/categories
+
+###
+
+POST http://localhost:8080/profiles
+Content-Type: application/json
+
+{
+  "firstName": "Josh",
+  "lastName": "Tompson",
+  "email": "josh@gmail.com"
+}
+
+
+
