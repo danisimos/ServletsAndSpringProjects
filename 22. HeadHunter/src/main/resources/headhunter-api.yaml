@@ -1,0 +1,454 @@
+openapi: 3.0.3
+info:
+  title: "HeadHunter API"
+  version: 1.0.0
+servers:
+  - url: "http://localhost:8080/api/headhunter"
+tags:
+  - name: Company
+  - name: Cv
+  - name: SignIn
+  - name: SignUp
+  - name: Vacancy
+  - name: ConfirmAccount
+  - name: Logout
+security:
+  - bearerAuth: []
+paths:
+  /api/signIn/:
+    post:
+      operationId: signIn
+      summary: sign in
+      tags:
+        - SignIn
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignInForm'
+      responses:
+        200:
+          description: asd
+          content:
+            application/json:
+              schema:
+                type: string
+  /api/signUp/:
+    post:
+      operationId: signUp
+      summary: sign up
+      security: []
+      tags:
+        - SignUp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignUpForm'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDto'
+  /api/logout/:
+    post:
+      operationId: logout
+      summary: logout
+      tags:
+        - Logout
+      security: [ ]
+      responses:
+        200:
+          description: asd
+          content:
+            application/json:
+              schema:
+                type: string
+  /api/headhunter/companies/:
+    post:
+      operationId: createCompany
+      summary: create company
+      security:
+        - BasicAuth: [ ]
+      tags:
+        - Company
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyForm'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDto'
+    get:
+      operationId: getCompanies
+      summary: get all companies with sort
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: page
+          required: true
+          schema:
+            type: integer
+            format: int64
+          in: query
+        - name: sortBy
+          required: false
+          schema:
+            type: string
+            nullable: true
+          in: query
+      tags:
+        - Company
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompaniesPageDto'
+  /api/headhunter/cv/:
+    post:
+      operationId: createCV
+      summary: create CV
+      security:
+        - BasicAuth: [ ]
+      tags:
+        - Cv
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CVForm'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CVDto'
+    get:
+      operationId: getAllCV
+      summary: get all CVies with sort
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: page
+          required: true
+          schema:
+            type: integer
+            format: int64
+          in: query
+        - name: sortBy
+          required: false
+          schema:
+            type: string
+            nullable: true
+          in: query
+      tags:
+        - Cv
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CVPageDto'
+  /api/headhunter/vacancy/:
+    post:
+      operationId: createVacancy
+      summary: create vacancy(only for companies)
+      security:
+        - BasicAuth: [ ]
+      tags:
+        - Vacancy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VacancyForm'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VacancyDto'
+    get:
+      operationId: getAllVacancy
+      summary: get vacancies with sort and salary filter
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: page
+          required: true
+          schema:
+            type: integer
+            format: int64
+          in: query
+        - name: sortBy
+          required: false
+          schema:
+            type: string
+            nullable: true
+          in: query
+        - name: salaryFrom
+          required: false
+          schema:
+            type: integer
+            format: int64
+          in: query
+        - name: salaryTo
+          required: false
+          schema:
+            type: integer
+            format: int64
+          in: query
+      tags:
+        - Vacancy
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VacanciesPageDto'
+  /api/headhunter/vacancy/getByCompany:
+    get:
+      operationId: getByCompany
+      summary: get vacancies by company
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: companyId
+          required: true
+          schema:
+            type: integer
+            format: int64
+          in: query
+        - name: page
+          required: true
+          schema:
+            type: integer
+            format: int64
+          in: query
+        - name: sortBy
+          required: false
+          schema:
+            type: string
+            nullable: true
+          in: query
+      tags:
+        - Vacancy
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VacanciesPageDto'
+  /api/headhunter/vacancy/getBySpecialization:
+    get:
+      operationId: getBySpecialization
+      summary: get vacancies by specialization
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: specialization
+          required: true
+          schema:
+            type: string
+          in: query
+        - name: page
+          required: true
+          schema:
+            type: integer
+            format: int64
+          in: query
+        - name: sortBy
+          required: false
+          schema:
+            type: string
+            nullable: true
+          in: query
+      tags:
+        - Vacancy
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VacanciesPageDto'
+  /api/headhunter/vacancy/respond:
+    post:
+      operationId: respondToVacancy
+      summary: respond to vacancy
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: vacancyId
+          required: true
+          schema:
+            type: integer
+            format: int64
+          in: query
+      tags:
+        - Vacancy
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VacancyResponseDto'
+  /api/headhunter/confirm/{confirm-code}/:
+    get:
+      operationId: confirmAccount
+      summary: confirm account
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: confirm-code
+          required: true
+          schema:
+            type: string
+          in: path
+      tags:
+        - ConfirmAccount
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDto'
+  /api/headhunter/sendAnotherConfirmCode/{confirm-code}/:
+    get:
+      operationId: sendAnotherConfirmCode
+      summary: send another confirmation mail
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: confirm-code
+          required: true
+          schema:
+            type: string
+          in: path
+      tags:
+        - ConfirmAccount
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDto'
+  /api/headhunter/vacancy/acceptResponse:
+    post:
+      operationId: acceptResponse
+      summary: accept response to user to vacancy
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: vacancyResponseId
+          required: true
+          schema:
+            type: integer
+            format: int64
+          in: query
+      tags:
+        - Vacancy
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDto'
+  /api/headhunter/vacancy/addToFavorites:
+    post:
+      operationId: addToFavorites
+      summary: add vacancy to favorite
+      security:
+        - BasicAuth: [ ]
+      parameters:
+        - name: vacancyId
+          required: true
+          schema:
+            type: integer
+            format: int64
+          in: query
+      tags:
+        - Vacancy
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VacancyDto'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    AccountDto:
+      type: object
+    AccountDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/AccountDto'
+    SignInForm:
+      $ref: '#/components/schemas/SignInForm'
+    SignUpForm:
+      $ref: '#/components/schemas/SignUpForm'
+    CompanyForm:
+      $ref: '#/components/schemas/CompanyForm'
+    CompanyDto:
+      type: object
+    CompanyDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CompanyDto'
+    CVForm:
+      $ref: '#/components/schemas/CVForm'
+    CVDto:
+      type: object
+    CVDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/CVDto'
+    VacancyForm:
+      $ref: '#/components/schemas/VacancyForm'
+    VacancyDto:
+      type: object
+    VacancyDtoList:
+      type: array
+      items:
+        $ref: '#/components/schemas/VacancyDto'
+    VacancyResponseDto:
+      type: object
+    AccountsPageDto:
+      type: object
+    CompaniesPageDto:
+      type: object
+    CVPageDto:
+      type: object
+    VacanciesPageDto:
+      type: object

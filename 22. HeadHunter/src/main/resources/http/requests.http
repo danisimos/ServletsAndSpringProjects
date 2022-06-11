@@ -1,0 +1,99 @@
+POST http://localhost:8080/api/signUp/
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "test",
+  "email": "test.testgmail.com",
+  "password": "test"
+}
+
+###
+
+POST http://localhost:8080/api/signIn/
+Content-Type: application/json
+
+{
+  "email": "daniil.korotaev@gmail.com",
+  "password": "qwerty"
+}
+
+###
+
+POST http://localhost:8080/api/signIn/
+Content-Type: application/json
+
+{
+  "email": "test.test@gmail.com",
+  "password": "test"
+}
+
+###
+
+POST http://localhost:8080/api/cv/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwua29yb3RhZXZAZ21haWwuY29tIiwiZXhwIjoxNjUxNTk1NDczfQ.avpFgydcMGesNbSIhkT3565eilWShHto_rVRrWPQL-0
+Content-Type: application/json
+
+{
+  "title": "cvTitle",
+  "text": "cvText"
+}
+
+###
+
+GET http://localhost:8080/api/cv/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwua29yb3RhZXZAZ21haWwuY29tIiwiZXhwIjoxNjUxNTk1NDczfQ.avpFgydcMGesNbSIhkT3565eilWShHto_rVRrWPQL-0
+
+###
+
+POST http://localhost:8080/api/companies/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwua29yb3RhZXZAZ21haWwuY29tIiwiZXhwIjoxNjUxNjcxODA4fQ.Lzazayo4J6YBJlWrXmh5UsKfBMYj30cuPvpxdu_1LKQ
+Content-Type: application/json
+
+{
+  "name": "someCompanyName",
+  "description": "someDescription"
+}
+поиск
+от ди о зп
+фильтрация по новизне
+
+
+###
+
+GET http://localhost:8080/api/companies/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwua29yb3RhZXZAZ21haWwuY29tIiwiZXhwIjoxNjUxNjcxODA4fQ.Lzazayo4J6YBJlWrXmh5UsKfBMYj30cuPvpxdu_1LKQ
+
+###
+
+POST http://localhost:8080/api/vacancies/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwua29yb3RhZXZAZ21haWwuY29tIiwiZXhwIjoxNjUxNjgzNDM0fQ._FBERolOZE803CUmz0DIWe19JNlvuOEQZtGMLYYToOw
+Content-Type: application/json
+
+{
+  "title": "vacancyTitle2",
+  "description": "description2"
+}
+
+###
+
+GET http://localhost:8080/api/vacancies/getByCompany/?companyId=17
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwua29yb3RhZXZAZ21haWwuY29tIiwiZXhwIjoxNjUxNjc3NTMzfQ.ZwvP872KKC2LowvnylT5PAUMH4MUPi4pQJgoXuP9fVU
+
+###
+
+POST http://localhost:8080/api/vacancies/respond/?vacancyId=45
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0LnRlc3RAZ21haWwuY29tIiwiZXhwIjoxNjUxNjgwMzc1fQ.-zDslGtUcq5ewwxI4Kq3_KeaCBUr6y8IPydq_5b9qow
+
+###
+
+POST http://localhost:8080/api/vacancies/acceptResponse/?vacancyResponseId=2
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwua29yb3RhZXZAZ21haWwuY29tIiwiZXhwIjoxNjUxNjgwNDA2fQ.C-uRQJgfH3cgFeZ06mEDNrsz5Zf0z5CqpGUdMWyJTT0
+
+###
+
+POST http://localhost:8080/api/vacancies/addToFavorites/?vacancyId=45
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5paWwua29yb3RhZXZAZ21haWwuY29tIiwiZXhwIjoxNjUxNjgwNDA2fQ.C-uRQJgfH3cgFeZ06mEDNrsz5Zf0z5CqpGUdMWyJTT0
+
+
+
